@@ -6,11 +6,11 @@ RUN apt-get update && apt-get install -y git
 # Set the working directory
 WORKDIR /var/www/html
 
-# Clone the Laravel script from GitHub
+# Clone the PHP script from GitHub
 RUN git clone https://github.com/rabytebuild/wordpressscript.git .
 
-# Install Laravel dependencies
-RUN composer install --no-dev
+# Copy the contents of the wordPressscript directory to /var/www/html
+COPY wordpressscript/. /var/www/html
 
 # Set the appropriate file permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
