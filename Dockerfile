@@ -7,14 +7,14 @@ RUN apt-get update && apt-get install -y git
 WORKDIR /var/www/html
 
 # Clone the PHP script from GitHub
-RUN git clone https://github.com/rabytebuild/wordpressscript.git .
+RUN git clone https://github.com/rabytebuild/wordpressscript
 
-# Copy the contents of the wordPressscript directory to /var/www/html
-COPY wordpressscript/. /var/www/html
+# Set appropriate file permissions
+RUN chown -R www-data:www-data /var/www/html
 
-# Set the appropriate file permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# Enable Apache modules and configure the site
+RUN a2enmod rewrite
+COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
 # Expose port 80
 EXPOSE 80
