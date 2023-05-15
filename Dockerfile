@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y git
 WORKDIR /var/www/html
 
 # Clone the PHP script from GitHub
-RUN git clone https://github.com/rabytebuild/wordpressscript
+RUN git clone https://github.com/rabytebuild/wordpressscript.git
 
 # Set appropriate file permissions
 RUN chown -R www-data:www-data /var/www/html
