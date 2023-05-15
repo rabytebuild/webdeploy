@@ -22,10 +22,6 @@ RUN chown -R www-data:www-data /var/www/html
 COPY php.ini /usr/local/etc/php/conf.d/custom.ini
 RUN docker-php-ext-enable pdo_mysql
 
-# Enable Apache modules and configure the site
-RUN a2enmod rewrite
-COPY apache.conf /etc/apache2/sites-available/000-default.conf
-
 # Expose port 80
 EXPOSE 80
 
