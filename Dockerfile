@@ -16,10 +16,6 @@ RUN composer install --no-dev
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Enable Apache modules and configure the site
-RUN a2enmod rewrite
-COPY laravel.conf /etc/apache2/sites-available/
-
 # Expose port 80
 EXPOSE 80
 
